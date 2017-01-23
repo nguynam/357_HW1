@@ -20,3 +20,12 @@ arr.append("honey")
 arr += ["are", "us"]
 
 //Problem 4
+for item in arr {
+    print(item)
+}
+for(index, value) in arr.enumerated() {
+    print("Item \(index) is \(value)")
+}
+
+//Problem 5
+
