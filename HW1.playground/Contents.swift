@@ -68,4 +68,55 @@ for _ in 1...y {
 print(product)
 
 //Problem 11
+var count = 0
+var sum: Float = 0.0
+var avg: Float
+var values = Array(names.values)
+while count < names.count {
+    sum += values[count]
+    count = count + 1
+}
+avg = Float(sum) / Float(names.count)
+print(avg)
 
+//Problem 12
+if(avg < 5.0){
+    print("Low")
+}
+else if(avg >= 5 && avg < 7){
+    print("Moderate")
+}
+else if(avg >= 7){
+    print("High")
+}
+
+//Problem 13
+var strOut: String
+count = 0
+switch count {
+case 0:
+    strOut = "none"
+case 1...3:
+    strOut = "a few"
+case 4...9:
+    strOut = "several"
+case 10...99:
+    strOut = "tens of"
+case 100...999:
+    strOut = "hundreds of"
+case 1000...999999:
+    strOut = "thousands of"
+case let x where x > 999999:
+    strOut = "millions of"
+default:
+    strOut = "millions of"
+}
+print(strOut)
+
+//Problem 14
+func verbalizeNumber(x: Int) -> String {
+    var verbal: String
+    count = x
+    verbal = "\(x) is " + strOut
+    return verbal
+}
