@@ -1,3 +1,4 @@
+//Authors: Nam Nguyen and Josh Getter
 import UIKit
 
 //Problem 1
@@ -92,7 +93,6 @@ else if(avg >= 7){
 
 //Problem 13
 var strOut: String
-count = 0
 switch count {
 case 0:
     strOut = "none"
@@ -116,7 +116,74 @@ print(strOut)
 //Problem 14
 func verbalizeNumber(x: Int) -> String {
     var verbal: String
-    count = x
+    //Problem 13
+    var strOut: String
+    switch x {
+    case 0:
+        strOut = "none"
+    case 1...3:
+        strOut = "a few"
+    case 4...9:
+        strOut = "several"
+    case 10...99:
+        strOut = "tens of"
+    case 100...999:
+        strOut = "hundreds of"
+    case 1000...999999:
+        strOut = "thousands of"
+    case let x where x > 999999:
+        strOut = "millions of"
+    default:
+        strOut = "millions of"
+    }
+    //print(strOut)
     verbal = "\(x) is " + strOut
     return verbal
+}
+
+//Problem 15
+for i in stride(from: 1, to: 10, by: 10){
+    print(verbalizeNumber(x: i) + " dogs")
+}
+
+//Problem 16
+func verbalizeAndShoutNumber(x: Int) -> String {return verbalizeNumber(x: x).uppercased()}
+
+//Problem 17
+func expressNumbersElegantly(end: Int, verbalizeFunction: (Int) -> String)->String{
+    var verbalizedNumbers: String = ""
+    for i in stride(from: 1, to: end+1, by: 1){
+        verbalizedNumbers += verbalizeFunction(i) + "\n"
+    }
+    return verbalizedNumbers
+}
+var speakFunc : (Int) -> String = verbalizeNumber
+var yellFunc : (Int) -> String = verbalizeAndShoutNumber
+expressNumbersElegantly(end: 4, verbalizeFunction: speakFunc)
+expressNumbersElegantly(end: 4, verbalizeFunction: yellFunc)
+
+//Problem 18
+func expressNumbersVeryElegantly(upToNumber end: Int, expressionFunction verbalizeFunction: (Int) -> String)->String{
+    var verbalizedNumbers: String = ""
+    for i in stride(from: 1, to: end+1, by: 1){
+        verbalizedNumbers += verbalizeFunction(i) + "\n"
+    }
+    return verbalizedNumbers
+}
+expressNumbersVeryElegantly(upToNumber: 60, expressionFunction: speakFunc)
+expressNumbersVeryElegantly(upToNumber: 60, expressionFunction: yellFunc)
+
+//Problem 19
+var famousLastWords = ["the cow jumped over the moon.", "three score and four years ago", "lets nuc 'em Joe!", "ah, there is just something about Swift"]
+famousLastWords.map { (phrase: String) -> String in
+    var first = String(phrase[phrase.startIndex]).capitalized
+    return first + String(phrase.characters.dropFirst())
+}
+
+//Problem 20
+var animals = ["cats", "dogs", "dolphins", "parrots", "monkeys", "elephants","tigers","lions","otters"]
+var people = ["Jimmy", "Sarah", "Paul", "Bill", "Amy", "Tyler"]
+people.map {(person: String) -> String in
+    var index = arc4random_uniform(UInt32(animals.count))
+    return "\(person)'s favorite animal is \(animals[Int(index)])"
 }
